@@ -1,0 +1,29 @@
+#######################################
+# Syntax Coloring Map For DHTSensor
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DHTSensor	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setup	KEYWORD2
+read	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+DHT11	LITERAL1
+DHT22	LITERAL1
+AM2302	LITERAL1
+
+SUCCESS	LITERAL1
+ERROR_RESPONSE_SIGNAL	LITERAL1
+ERROR_BIT_SIGNAL	LITERAL1
+ERROR_CHECKSUM	LITERAL1
