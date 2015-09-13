@@ -56,11 +56,11 @@ int16_t HCSR04Module::read()
   DEBUG_PRINTLN(" us")
 
   if (pulsetime > 29000) {
-	  // No obstacle
-	  return 0;
+      // No obstacle
+      return 0;
   }
   else if (pulsetime >= 116) {
-	// Valid distance
+    // Valid distance
     return pulsetime / 58;
   }
 

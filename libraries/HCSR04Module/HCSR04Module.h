@@ -29,7 +29,7 @@ class HCSR04Module
 
   private:
     uint8_t _pinTrig;
-	uint8_t _pinEcho;
+    uint8_t _pinEcho;
 };
 
 #endif
