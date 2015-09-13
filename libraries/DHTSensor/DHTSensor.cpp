@@ -62,9 +62,9 @@ DHTSensor::Result DHTSensor::read(Data& data)
   for (byteno = 0; byteno < sizeof(data.raw); byteno++) {
     for (bitno = 7; bitno >= 0; bitno--) {
       // Bit signal:
-	  // - low 50us
-	  // - high bit 0: 26-28us, bit 1: 70us
-	  // - low
+      // - low 50us
+      // - high bit 0: 26-28us, bit 1: 70us
+      // - low
       pulsetime = pulseIn(_pin, HIGH, 50+70);
       if (pulsetime > 28) {
         bitSet(data.raw[byteno], bitno);
@@ -79,8 +79,8 @@ DHTSensor::Result DHTSensor::read(Data& data)
 
   DEBUG_PRINT("Raw data: ")
   for (byteno = 0; byteno < sizeof(data.raw); byteno++) {
-	DEBUG_PRINT(data.raw[byteno], HEX)
-	DEBUG_PRINT(" ")
+    DEBUG_PRINT(data.raw[byteno], HEX)
+    DEBUG_PRINT(" ")
   }
   DEBUG_PRINTLN()
 
@@ -96,14 +96,14 @@ DHTSensor::Result DHTSensor::read(TData& temp, RHData& rh)
   Result result = read(data);
   if (result == DHTSensor::SUCCESS) {
     if (_model == DHT11) {
-	  // Humidity = 1st byte
-	  rh.decimal = data.rh_high;
-	  rh.fraction = 0;
+      // Humidity = 1st byte
+      rh.decimal = data.rh_high;
+      rh.fraction = 0;
 
       // Temperature = 3rd byte
-	  temp.decimal = data.temp_high;
-	  temp.fraction = 0;
-	} else {
+      temp.decimal = data.temp_high;
+      temp.fraction = 0;
+    } else {
       // Humidity x10 = 1st byte * 256 + 2nd byte
       uint16_t value = data.rh_high << 8 | data.rh_low;
       rh.decimal = value / 10;
@@ -115,7 +115,7 @@ DHTSensor::Result DHTSensor::read(TData& temp, RHData& rh)
       if (value & 0x8000)
         temp.decimal *= -1;
       temp.fraction = (value & 0x7fff) % 10;
-	}
+    }
   }
 
   return result;

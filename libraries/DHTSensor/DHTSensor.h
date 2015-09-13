@@ -25,11 +25,11 @@
 class DHTSensor
 {
   public:
-	enum Model {
-	  DHT11,
-	  DHT22,
-	  AM2302 = DHT22
-	};
+    enum Model {
+      DHT11,
+      DHT22,
+      AM2302 = DHT22
+    };
 
     enum Result {
       SUCCESS = 0,
