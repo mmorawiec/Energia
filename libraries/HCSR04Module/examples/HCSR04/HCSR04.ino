@@ -21,7 +21,7 @@ void setup()
 
 void loop()
 {
-  int16_t distance = hcsr04.read();
+  int16_t distance = hcsr04.readDistance();
   if (distance > 0) {
     Serial.print("Distance:\t");
     Serial.print(distance);

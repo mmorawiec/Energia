@@ -22,10 +22,16 @@
 class HCSR04Module
 {
   public:
+    enum Unit {
+        CM,
+        INCH
+    };
+
     HCSR04Module(uint8_t pinTrig, uint8_t pinEcho);
 
     void setup();
-    int16_t read();
+    uint16_t readTime();
+    int16_t readDistance(Unit unit = HCSR04Module::CM);
 
   private:
     uint8_t _pinTrig;

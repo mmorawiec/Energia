@@ -33,7 +33,7 @@ void HCSR04Module::setup()
   pinMode(_pinEcho, INPUT);
 }
 
-int16_t HCSR04Module::read()
+uint16_t HCSR04Module::readTime()
 {
   uint16_t pulsetime;
 
@@ -45,8 +45,6 @@ int16_t HCSR04Module::read()
   noInterrupts();
 
   // Echo signal: high pulse
-  // - 116us: 2cm
-  // - 29ms: 500cm
   pulsetime = pulseIn(_pinEcho, HIGH, 50000);
 
   interrupts();
@@ -55,13 +53,24 @@ int16_t HCSR04Module::read()
   DEBUG_PRINT(pulsetime, DEC)
   DEBUG_PRINTLN(" us")
 
-  if (pulsetime > 29000) {
-    // No obstacle
+  return pulsetime;
+}
+
+int16_t HCSR04Module::readDistance(Unit unit)
+{
+  uint16_t time = readTime();
+
+  // Echo pulse time
+  // Valid distance: 2cm (116us) - 500cm (29ms)
+  // No obstacle: 0
+  // Invalid reading: -1
+  if (time > 29000) {
     return 0;
-  }
-  else if (pulsetime >= 116) {
-    // Valid distance
-    return pulsetime / 58;
+  } else if (time >= 116) {
+    if (unit == HCSR04Module::CM)
+      return time / 58;
+    else if (unit == HCSR04Module::INCH)
+      return time / 148;
   }
 
   return -1;

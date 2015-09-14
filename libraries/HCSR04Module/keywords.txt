@@ -13,8 +13,12 @@ HCSR04Module	KEYWORD1
 #######################################
 
 setup	KEYWORD2
-read	KEYWORD2
+readTime	KEYWORD2
+readDistance	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
+
+CM	LITERAL1
+INCH	LITERAL1
